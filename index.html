@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter the Code</h1>
+    <input type="text" id="codeInput" placeholder="Enter code here">
+    <button onclick="checkCode()">Submit</button>
+    <p id="result"></p>
+    <script>
+        function checkCode() {
+            const code = document.getElementById('codeInput').value;
+            const result = document.getElementById('result');
+            if (code === '3342') {
+                result.textContent = 'Access Granted: Welcome!';
+            } else {
+                result.textContent = 'Access Denied: Incorrect Code!';
+            }
+        }
+    </script>
+</body>
+</html>
