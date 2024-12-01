@@ -28,13 +28,26 @@
     <button onclick="checkCode()">Submit</button>
     <p id="result"></p>
     <script>
+        let attempts = 0; // Track the number of attempts
+
         function checkCode() {
             const code = document.getElementById('codeInput').value;
             const result = document.getElementById('result');
+            attempts++; // Increment attempts on each submission
+
             if (code === '3342') {
-                result.textContent = 'Access Granted: next clue details';
+                result.textContent = 'Access Granted: Welcome!';
+                attempts = 0; // Reset attempts on success
             } else {
-                result.textContent = 'Access Denied: Incorrect Code!';
+                if (attempts === 1) {
+                    result.textContent = 'Incorrect code. Try again!';
+                } else if (attempts === 2) {
+                    result.textContent = 'Still wrong! Try again!';
+                } else if (attempts === 3) {
+                    result.textContent = 'Each floor has a specific amount of them. There are four floors.';
+                } else {
+                    result.textContent = 'Keep trying! You’ll get it!';
+                }
             }
         }
     </script>
