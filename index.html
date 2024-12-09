@@ -6,19 +6,53 @@
     <title>Code Checker</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Garamond', serif; /* Medieval style font */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #f4f4f9;
+            background-color: #f0e1c1; /* Light parchment background */
+            color: #3a2a1d; /* Dark brown text */
+        }
+        h1 {
+            font-family: 'Georgia', serif;
+            font-size: 2.5rem;
+            color: #7c4a26; /* Darker brown */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
         input, button {
-            margin: 10px;
-            padding: 10px;
-            font-size: 1rem;
+            margin: 15px;
+            padding: 15px;
+            font-size: 1.1rem;
+            border: 2px solid #7c4a26; /* Dark brown border */
+            border-radius: 10px;
+            background-color: #fff8e1; /* Creamy background */
+            color: #3a2a1d; /* Dark text color */
+            font-family: 'Garamond', serif;
+        }
+        input:focus, button:focus {
+            outline: none;
+            border-color: #d14f19; /* Bright medieval color when focused */
+        }
+        #result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.5;
+            max-width: 80%;
+            background-color: #f4f0e6; /* Light parchment-like color */
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .equation {
+            font-weight: bold;
+            color: #5c3d20; /* Rich brown color for equations */
+        }
+        strong {
+            color: #d14f19; /* Highlighted numbers/values */
         }
     </style>
 </head>
@@ -31,22 +65,33 @@
         let attempts = 0; // Track the number of attempts
 
         function checkCode() {
-            const code = document.getElementById('codeInput').value;
+            const code = document.getElementById('codeInput').value.trim(); // Trim spaces
             const result = document.getElementById('result');
             attempts++; // Increment attempts on each submission
 
-            if (code === '3342') {
-                result.textContent = 'Access Granted: Welcome!';
+            if (code === '7EF6') {
+                result.innerHTML = `Ah, brave adventurer, your next stop lies in a place where the finest desserts in all of Stockholm are crafted. Yes, this “Mr.” knows his way around sugar.<br><br>
+                When you arrive, look in front of his doors. There stands a red statue—a man of perfect proportions, drawn by the great Leonardo himself. You must ask: What were the real dimensions of the paper Leonardo originally used to sketch this masterpiece?<br><br>
+                Use them in the equations below and your next location will be revealed:<br>
+                <span class="equation">Eq 1:</span> x + (year KTH was founded) / 76.125 + (4693 * 2) / 10000<br>
+                <span class="equation">Eq 2:</span> 2006 - (year Tasos was born) + (6! - 7) / 1000<br><br>
+                If you find yourself lost in wondering how old our oldest q member is, you may hear a whisper from your past, a voice guiding you through the shadows: Dial the number, and perhaps, in the stillness, the answer will find you: <strong>+30 6978619579</strong>.
+`;
                 attempts = 0; // Reset attempts on success
             } else {
-                if (attempts === 1) {
-                    result.textContent = 'Incorrect code. Try again!';
-                } else if (attempts === 2) {
-                    result.textContent = 'Still wrong! Try again!';
-                } else if (attempts === 3) {
-                    result.textContent = 'Each floor has a specific amount of them. There are four floors.';
-                } else {
-                    result.textContent = 'Keep trying! You’ll get it!';
+                switch (attempts) {
+                    case 1:
+                        result.textContent = 'Incorrect code. Try again!';
+                        break;
+                    case 2:
+                        result.textContent = 'Still wrong! Try again!';
+                        break;
+                    case 3:
+                        result.textContent = 'What if each floor could be represented by a four-digit binary code, where each window is marked as either present (1) or missing (0)?';
+                        break;
+                    default:
+                        result.textContent = 'Still not right. Keep trying! You’ll get there!';
+                        break;
                 }
             }
         }
